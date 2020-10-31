@@ -25,4 +25,9 @@ insert into Address_Book values
 ('Rakhi','Saraf','Manik Nagar','Ajmer','Rajasthan','125463','8596785425','rakhi@gmail.com');
 /*View AddressBook*/
 select* from Address_Book;
+/*Update existing contact*/
+update Address_Book
+set Address = 'street 10' where FirstName = 'Bill';
+select* from Address_Book;
+
 
