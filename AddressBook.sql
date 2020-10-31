@@ -29,5 +29,10 @@ select* from Address_Book;
 update Address_Book
 set Address = 'street 10' where FirstName = 'Bill';
 select* from Address_Book;
+/*delete contact using person's name*/
+delete Address_Book
+where FirstName = 'Bill';
+select* from Address_Book;
+
 
 
