@@ -18,3 +18,11 @@ Email varchar(20) not null
 );
 /*View table details*/
 select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'Address_Book';
+/*Add Contacts*/
+insert into Address_Book values
+('Bill','Jones','Street 4','Mumbai','Maharashtra','452856','9856985696','billjones@gmail.com'),
+('Leena','Thomas','New Market','Bhopal','Madhya Pradesh','852147','7458632156','leena@gmail.com'),
+('Rakhi','Saraf','Manik Nagar','Ajmer','Rajasthan','125463','8596785425','rakhi@gmail.com');
+/*View AddressBook*/
+select* from Address_Book;
+
