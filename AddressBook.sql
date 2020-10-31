@@ -33,6 +33,9 @@ select* from Address_Book;
 delete Address_Book
 where FirstName = 'Bill';
 select* from Address_Book;
+/*Retrieve Data City and state wise*/
+select * from Address_Book
+where City = 'Bhopal' or State = 'Madhya Pradesh';
 
 
 
