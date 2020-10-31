@@ -34,7 +34,7 @@ set Address = 'street 10' where FirstName = 'Bill';
 select* from Address_Book;
 /*delete contact using person's name*/
 delete Address_Book
-where FirstName = 'Bill';
+where FirstName = 'Rakhi';
 select* from Address_Book;
 /*Retrieve Data City and state wise*/
 select * from Address_Book
@@ -46,6 +46,12 @@ group by State, City;
 select * from Address_Book
 where City = 'Bhopal'
 order by FirstName asc;
-
+/*Alter address book to add type of contact*/
+Alter table Address_Book
+Add Type varchar(10);
+/*Add type of contacts by name*/
+update Address_Book set Type = 'Family' where FirstName = 'Bill' or FirstName = 'Rakhi' or FirstName = 'Priyanka';
+update Address_Book set Type = 'Friends' where FirstName = 'Terissa' or FirstName = 'Leena';
+update Address_Book set Type = 'Profession' where FirstName = 'Karishma';
 
 
