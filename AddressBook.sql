@@ -46,3 +46,22 @@ group by State, City;
 select * from Address_Book
 where City = 'Bhopal'
 order by FirstName asc;
+/*ContactType table added*/
+create table Contact_Type
+(
+FirstName varchar(25) not null,
+Type varchar(10) not null
+);
+/*Add enteries to contact_type*/
+insert into Contact_Type values
+('Bill','Friends'),
+('Leena','Family'),
+('Terrisa','Family'),
+('Priyanka','Friends'),
+('Karishma','Profession'),
+('Rakhi','Family');
+/*View Contact_type*/
+select * from Contact_Type
+/*Join address_book and contact_type*/
+select * from Address_Book address inner join Contact_Type type
+on (address.FirstName = type.FirstName)
