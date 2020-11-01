@@ -65,3 +65,8 @@ select * from Contact_Type
 /*Join address_book and contact_type*/
 select * from Address_Book address inner join Contact_Type type
 on (address.FirstName = type.FirstName)
+/*Count Contacts by type*/
+select COUNT(type.Type), type.Type from Address_Book address inner join Contact_Type type
+on address.FirstName = type.FirstName
+group by Type;
+
