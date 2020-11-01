@@ -69,4 +69,11 @@ on (address.FirstName = type.FirstName)
 select COUNT(type.Type), type.Type from Address_Book address inner join Contact_Type type
 on address.FirstName = type.FirstName
 group by Type;
+/*Insert another type for bill*/
+insert into Contact_Type values
+('Bill','Family');
+/*View Bill with two contact types*/
+select * from Address_Book address inner join Contact_Type type
+on (address.FirstName = type.FirstName)
+where address.FirstName = 'Bill';
 
