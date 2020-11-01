@@ -46,14 +46,3 @@ group by State, City;
 select * from Address_Book
 where City = 'Bhopal'
 order by FirstName asc;
-/*Alter address book to add type of contact*/
-Alter table Address_Book
-Add Type varchar(10);
-/*Add type of contacts by name*/
-update Address_Book set Type = 'Family' where FirstName = 'Bill' or FirstName = 'Rakhi' or FirstName = 'Priyanka';
-update Address_Book set Type = 'Friends' where FirstName = 'Terrisa' or FirstName = 'Leena';
-update Address_Book set Type = 'Profession' where FirstName = 'Karishma';
-/*Count Contacts by type*/
-select COUNT(Type), type from Address_Book
-group by type;
-
