@@ -61,3 +61,6 @@ add Book_Name varchar(20)
 update Address_Book set  Book_Name ='Office' where FirstName in ('Bill', 'Terrisa', 'Priyanka', 'Rakhi');
 update Address_Book set  Book_Name ='Home' where FirstName in ('Leena','Karishma');
 select * from Address_Book;
+--Count contacts by contact type
+select Contact_Type, COUNT(Contact_Type) from Address_Book
+group by Contact_Type
