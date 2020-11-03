@@ -46,3 +46,18 @@ group by State, City;
 select * from Address_Book
 where City = 'Bhopal'
 order by FirstName asc;
+--Add Contact_Type attribute to address_book
+alter table Address_Book
+add Contact_Type varchar(20)
+--Update Contacts for contact_type
+update Address_Book set Contact_Type ='Friends' where FirstName in ('Bill', 'Terrisa', 'Priyanka');
+update Address_Book set Contact_Type ='Family' where FirstName in ('Leena','Karishma');
+update Address_Book set Contact_Type ='Professional' where FirstName='Rakhi';
+select * from Address_Book;
+--Add Book_Name attribute to address_book
+alter table Address_Book
+add Book_Name varchar(20)
+--Update Contacts for book_name
+update Address_Book set  Book_Name ='Office' where FirstName in ('Bill', 'Terrisa', 'Priyanka', 'Rakhi');
+update Address_Book set  Book_Name ='Home' where FirstName in ('Leena','Karishma');
+select * from Address_Book;
