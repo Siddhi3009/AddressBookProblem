@@ -64,3 +64,6 @@ select * from Address_Book;
 --Count contacts by contact type
 select Contact_Type, COUNT(Contact_Type) from Address_Book
 group by Contact_Type
+--Adding contact bill to family also
+insert into Address_Book values
+('Bill','Jones','Street 4','Mumbai','Maharashtra','452856','9856985696','billjones@gmail.com','Family','Home');
