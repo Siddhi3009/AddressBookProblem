@@ -1,10 +1,10 @@
-/*Create AddressBook database*/
+--Create AddressBook database
 create database Address_Book_Service;
-/*Use Address_Book_Service database*/
+--Use Address_Book_Service database
 use Address_Book_Service;
-/*View Database Name*/
+--View Database Name
 select DB_NAME()
-/*Creating AddressBook table*/
+--Creating AddressBook table
 create table Address_Book
 (
 FirstName varchar(25) not null,
@@ -16,9 +16,9 @@ Zipcode varchar(6) not null,
 PhoneNumber varchar(12) not null,
 Email varchar(20) not null
 );
-/*View table details*/
+--View table details
 select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME = 'Address_Book';
-/*Add Contacts*/
+--Add Contacts
 insert into Address_Book values
 ('Bill','Jones','Street 4','Mumbai','Maharashtra','452856','9856985696','billjones@gmail.com'),
 ('Leena','Thomas','New Market','Bhopal','Madhya Pradesh','852147','7458632156','leena@gmail.com'),
@@ -26,54 +26,23 @@ insert into Address_Book values
 ('Priyanka','Chopra','Malviya Nagar','Ajmer','Rajasthan','547856','9589657485','priyanka@gmail.com'),
 ('Karishma','Khanna','Gopal Vihar','Bhopal','Madhya Pradesh','658927','9424787845','karishma@gmail.com'),
 ('Rakhi','Saraf','Manik Nagar','Ajmer','Rajasthan','125463','8596785425','rakhi@gmail.com');
-/*View AddressBook*/
+--View AddressBook
 select* from Address_Book;
-/*Update existing contact*/
+--Update existing contact
 update Address_Book
 set Address = 'street 10' where FirstName = 'Bill';
 select* from Address_Book;
-/*delete contact using person's name*/
+--delete contact using person's name
 delete Address_Book
 where FirstName = 'Rakhi';
 select* from Address_Book;
-/*Retrieve Data City and state wise*/
+--Retrieve Data City and state wise
 select * from Address_Book
 where City = 'Bhopal' or State = 'Madhya Pradesh';
-/*Count contacts by city and state*/
+--Count contacts by city and state
 select COUNT(City), City, State from Address_Book
 group by State, City;
-/*Sort contacts alphabetically for a city*/
+--Sort contacts alphabetically for a city
 select * from Address_Book
 where City = 'Bhopal'
 order by FirstName asc;
-/*ContactType table added*/
-create table Contact_Type
-(
-FirstName varchar(25) not null,
-Type varchar(10) not null
-);
-/*Add enteries to contact_type*/
-insert into Contact_Type values
-('Bill','Friends'),
-('Leena','Family'),
-('Terrisa','Family'),
-('Priyanka','Friends'),
-('Karishma','Profession'),
-('Rakhi','Family');
-/*View Contact_type*/
-select * from Contact_Type
-/*Join address_book and contact_type*/
-select * from Address_Book address inner join Contact_Type type
-on (address.FirstName = type.FirstName)
-/*Count Contacts by type*/
-select COUNT(type.Type), type.Type from Address_Book address inner join Contact_Type type
-on address.FirstName = type.FirstName
-group by Type;
-/*Insert another type for bill*/
-insert into Contact_Type values
-('Bill','Family');
-/*View Bill with two contact types*/
-select * from Address_Book address inner join Contact_Type type
-on (address.FirstName = type.FirstName)
-where address.FirstName = 'Bill';
-
