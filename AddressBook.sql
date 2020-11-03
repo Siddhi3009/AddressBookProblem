@@ -107,3 +107,7 @@ insert into Contact_Info values
 --Join contact_info and contact_type
 select * from Contact_Info contact inner join Contact_Type type
 on (contact.FirstName = type.FirstName)
+--Count contact by type
+select type.Contact_Type, COUNT(contact.FirstName) from Contact_Info contact inner join Contact_Type type
+on (contact.FirstName = type.FirstName)
+Group by type.Contact_Type;
