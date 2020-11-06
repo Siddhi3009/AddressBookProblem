@@ -67,27 +67,10 @@ group by Contact_Type
 --Adding contact bill to family also
 insert into Address_Book values
 ('Bill','Jones','Street 4','Mumbai','Maharashtra','452856','9856985696','billjones@gmail.com','Family','Home');
---ContactType table added
-create table Contact_Type
-(
-FirstName varchar(25) not null,
-Contact_Type varchar(20) not null
-);
---Add enteries to contact_type
-insert into Contact_Type values
-('Bill','Friends'),
-('Leena','Family'),
-('Terrisa','Friends'),
-('Priyanka','Friends'),
-('Karishma','Family'),
-('Rakhi','Professional'),
-('Bill', 'Family');
---View Contact_type
-select * from Contact_Type
 --Create table Contact_Info
 create table Contact_Info
 (
-FirstName varchar(25) not null,
+FirstName varchar(25) not null primary key,
 LastName varchar(25) not null,
 Address varchar(60) not null,
 City varchar(15) not null,
@@ -104,6 +87,24 @@ insert into Contact_Info values
 ('Priyanka','Chopra','Malviya Nagar','Ajmer','Rajasthan','547856','9589657485','priyanka@gmail.com'),
 ('Karishma','Khanna','Gopal Vihar','Bhopal','Madhya Pradesh','658927','9424787845','karishma@gmail.com'),
 ('Rakhi','Saraf','Manik Nagar','Ajmer','Rajasthan','125463','8596785425','rakhi@gmail.com');
+
+--ContactType table added
+create table Contact_Type
+(
+FirstName varchar(25) not null foreign key references Contact_Info(FirstName),
+Contact_Type varchar(20) not null
+);
+--Add enteries to contact_type
+insert into Contact_Type values
+('Bill','Friends'),
+('Leena','Family'),
+('Terrisa','Friends'),
+('Priyanka','Friends'),
+('Karishma','Family'),
+('Rakhi','Professional'),
+('Bill', 'Family');
+--View Contact_type
+select * from Contact_Type
 --Join contact_info and contact_type
 select * from Contact_Info contact inner join Contact_Type type
 on (contact.FirstName = type.FirstName)
