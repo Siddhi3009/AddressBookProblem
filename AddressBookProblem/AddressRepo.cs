@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AddressBookProblem
 {
-    class AddressRepo
+    public class AddressRepo
     {
         public static string connectionString = @"Data Source=DESKTOP-6S6I6GO\SQLEXPRESS;Initial Catalog=Address_Book_Service;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
