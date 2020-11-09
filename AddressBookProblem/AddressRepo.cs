@@ -8,6 +8,9 @@ namespace AddressBookProblem
     public class AddressRepo
     {
         public static string connectionString = @"Data Source=DESKTOP-6S6I6GO\SQLEXPRESS;Initial Catalog=Address_Book_Service;Integrated Security=True";
+        /// <summary>
+        /// Retrieves all contacts
+        /// </summary>
         public void GetAllContacts()
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -53,6 +56,11 @@ namespace AddressBookProblem
                 connection.Close();
             }
         }
+        /// <summary>
+        /// Updates phone number and email address of a contact
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns>true if contact updated successfully else false</returns>
         public bool UpdateContact(Contact contact)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -83,6 +91,12 @@ namespace AddressBookProblem
             }
             return false;
         }
+        /// <summary>
+        /// Deletes contact added in the given date range
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns>number of contacts deleted</returns>
         public int DeleteContactsAddedInADateRange(string startDate, string endDate)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -116,6 +130,11 @@ namespace AddressBookProblem
             }
             return contactsDeleted;
         }
+        /// <summary>
+        /// Retrieves contacts by city and state
+        /// </summary>
+        /// <param name="city"></param>
+        /// <param name="state"></param>
         public void RetrieveContactByCityOrState(string city, string state)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -161,6 +180,49 @@ namespace AddressBookProblem
             {
                 connection.Close();
             }
+        }
+        /// <summary>
+        /// Adds New Contact
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns>True if contact added successfully else false</returns>
+        public bool AddContact(Contact contact)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("SpAddContactDetails", connection);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@FirstName", contact.FirstName);
+                    command.Parameters.AddWithValue("@LastName", contact.LastName);
+                    command.Parameters.AddWithValue("@PhoneNumber", contact.PhoneNumber);
+                    command.Parameters.AddWithValue("@Email", contact.Email);
+                    command.Parameters.AddWithValue("@DateAdded", contact.DateAdded);
+                    command.Parameters.AddWithValue("@Contact_Type", contact.RelationType);
+                    command.Parameters.AddWithValue("@Address", contact.Address);
+                    command.Parameters.AddWithValue("@City", contact.City);
+                    command.Parameters.AddWithValue("@State", contact.State);
+                    command.Parameters.AddWithValue("@Zipcode", contact.Zipcode);
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return false;
         }
     }
 }
