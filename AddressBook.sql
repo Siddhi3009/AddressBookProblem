@@ -124,3 +124,19 @@ on (contact.ContactId = type.ContactId)) inner join Address address on address.C
 select type.Contact_Type, COUNT(contact.FirstName) from Contact_Info contact inner join Contact_Type type
 on (contact.ContactId = type.ContactId)
 Group by type.Contact_Type;
+--Add DateAdded field to the contact_info
+Alter table Contact_Info
+Add DateAdded datetime
+--Add DateAdded
+Update Contact_Info set 
+DateAdded = '2019-05-31' where ContactId = 1
+Update Contact_Info set 
+DateAdded = '2020-05-06' where ContactId = 2
+Update Contact_Info set 
+DateAdded = '2019-04-01' where ContactId = 3
+Update Contact_Info set 
+DateAdded = '2018-03-09' where ContactId = 4
+Update Contact_Info set 
+DateAdded = '2019-08-07' where ContactId = 5
+Update Contact_Info set 
+DateAdded = '2020-09-30' where ContactId = 6

@@ -28,24 +28,25 @@ namespace AddressBookProblem
                             contact.LastName = !dr.IsDBNull(2) ? dr.GetString(2) : "";
                             contact.PhoneNumber = !dr.IsDBNull(3) ? dr.GetString(3) : "";
                             contact.Email = !dr.IsDBNull(4) ? dr.GetString(4) : "";
-                            contact.RelationType = !dr.IsDBNull(6) ? dr.GetString(6) : "";
-                            contact.Address = !dr.IsDBNull(8) ? dr.GetString(8) : "";
-                            contact.City = !dr.IsDBNull(9) ? dr.GetString(9) : "";
-                            contact.State = !dr.IsDBNull(10) ? dr.GetString(10) : "";
-                            contact.Zipcode = !dr.IsDBNull(11) ? dr.GetString(11) : "";
-                            System.Console.WriteLine(contact.FirstName + "," + contact.LastName + "," + contact.PhoneNumber + "," + contact.Email + "," + contact.RelationType + "," + contact.Address + "," + contact.City +
+                            contact.DateAdded = !dr.IsDBNull(5) ? dr.GetDateTime(5) : Convert.ToDateTime("01/01/0001");
+                            contact.RelationType = !dr.IsDBNull(7) ? dr.GetString(7) : "";
+                            contact.Address = !dr.IsDBNull(9) ? dr.GetString(9) : "";
+                            contact.City = !dr.IsDBNull(10) ? dr.GetString(10) : "";
+                            contact.State = !dr.IsDBNull(11) ? dr.GetString(11) : "";
+                            contact.Zipcode = !dr.IsDBNull(12) ? dr.GetString(12) : "";
+                            Console.WriteLine(contact.FirstName + "," + contact.LastName + "," + contact.PhoneNumber + "," + contact.Email + "," + contact.DateAdded + "," + contact.RelationType + "," + contact.Address + "," + contact.City +
                                 "," + contact.State + "," + contact.Zipcode);
                         }
                     }
                     else
                     {
-                        System.Console.WriteLine("No data found");
+                        Console.WriteLine("No data found");
                     }
                 }
             }
             catch (Exception e)
             {
-                System.Console.WriteLine(e.Message);
+                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -81,6 +82,39 @@ namespace AddressBookProblem
                 connection.Close();
             }
             return false;
+        }
+        public int DeleteContactsAddedInADateRange(string startDate, string endDate)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            int contactsDeleted = 0;
+            try
+            {
+                using (connection)
+                {
+                    string query = @"delete from Contact_Info where DateAdded between '" + startDate + "' and '" + endDate + "';";
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    connection.Open();
+                    contactsDeleted = cmd.ExecuteNonQuery();
+                    if (contactsDeleted > 0)
+                    {
+                        Console.WriteLine(contactsDeleted + " contacts affected");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please check your query");
+                    }
+                }
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally 
+            {
+                connection.Close();
+            }
+            return contactsDeleted;
         }
     }
 }
