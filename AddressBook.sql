@@ -140,3 +140,34 @@ Update Contact_Info set
 DateAdded = '2019-08-07' where ContactId = 5
 Update Contact_Info set 
 DateAdded = '2020-09-30' where ContactId = 6
+--Stored Procedure to add a new contact
+create procedure SpAddContactDetails
+(
+@FirstName varchar(255),
+@LastName varchar(255),
+@PhoneNumber varchar(255),
+@Email varchar(255),
+@DateAdded DateTime,
+@Contact_Type varchar(255),
+@Address varchar(255),
+@City varchar(255),
+@State varchar(255),
+@Zipcode varchar(255)
+)
+as
+begin
+insert into Contact_Info values
+(
+@FirstName,@LastName, @PhoneNumber, @Email, @DateAdded
+);
+insert into Contact_Type values
+(
+@@IDENTITY, @Contact_Type
+)
+Declare @CustId int
+select @CustId = ContactId from Contact_Info where Email = @Email
+insert into Address values
+(
+@CustId, @Address, @City, @State, @Zipcode
+)
+end
