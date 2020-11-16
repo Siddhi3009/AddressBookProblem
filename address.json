@@ -1,35 +1,34 @@
 {
-<<<<<<< HEAD
-  "posts": [
+  "Address": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "Name": "Mark",
+      "Address": "NewYork"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "Name": "Aditya",
+      "Address": "Vizag"
+    },
+    {
+      "Name": "Siddhi",
+      "Address": "Jabalpur",
+      "id": 3
+    },
+    {
+      "Name": "Chopper",
+      "Address": "Pipariya",
+      "id": 4
+    },
+    {
+      "Name": "John",
+      "Address": "California",
+      "id": 5
+    },
+    {
+      "Name": "Divya",
+      "Address": "Allahabad",
+      "id": 6
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
-=======
-"Address" : [
-{
-"id": 1,
-"Name": "Mark",
-"Address": "NewYork"
-},
-{
-"id": 2,
-"Name": "Aditya",
-"Address": "Vizag"
-}
-]
-}
->>>>>>> UC22_RetrieveDataFromJsonServer
