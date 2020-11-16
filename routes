@@ -1,0 +1,7 @@
+{
+   "/Address/list":"/Address/:id",
+   "/Address/get/:id":"/Address/:id",
+   "/Address/create":"/Address",
+   "/Address/update/:id":"/Address/:id",
+   "/Address/delete/:id":"/Address/:id"
+}
