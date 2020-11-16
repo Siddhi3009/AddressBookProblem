@@ -4,6 +4,7 @@ using RestSharp;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace RestSharpTest
 {
@@ -63,6 +64,27 @@ namespace RestSharpTest
                 Assert.AreEqual(contact.name, dataResponse.name);
                 Assert.AreEqual(contact.Address, dataResponse.Address);
             }
+        }
+        /// <summary>
+        /// Test method to check updated address of contact
+        /// </summary>
+        [TestMethod]
+        public void GivenContact_WhenUpdated_ShouldReturnUpdatedContact()
+        {
+            //arrange
+            RestRequest request = new RestRequest("/Address/2", Method.PUT);
+            JObject jObject = new JObject();
+            jObject.Add("Name", "Aditya");
+            jObject.Add("Address", "Pune");
+            //act
+            request.AddParameter("application/json", jObject, ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            //assert
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+            Contact dataResponse = JsonConvert.DeserializeObject<Contact>(response.Content);
+            Assert.AreEqual("Aditya", dataResponse.name);
+            Assert.AreEqual("Pune", dataResponse.Address);
+            Console.WriteLine(response.Content);
         }
     }
 }
