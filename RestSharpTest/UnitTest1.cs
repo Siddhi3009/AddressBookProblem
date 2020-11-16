@@ -86,5 +86,18 @@ namespace RestSharpTest
             Assert.AreEqual("Pune", dataResponse.Address);
             Console.WriteLine(response.Content);
         }
+        /// <summary>
+        /// test method to check deletion of contact
+        /// </summary>
+        [TestMethod]
+        public void GivenContact_WhenDeleted_ShouldReturnStatusOk()
+        {
+            //arrange
+            RestRequest request = new RestRequest("/Address/2", Method.DELETE);
+            //act
+            IRestResponse response = client.Execute(request);
+            //assert
+            Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+        }
     }
 }
