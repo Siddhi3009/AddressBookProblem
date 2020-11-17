@@ -98,6 +98,9 @@ namespace RestSharpTest
             IRestResponse response = client.Execute(request);
             //assert
             Assert.AreEqual(response.StatusCode, System.Net.HttpStatusCode.OK);
+            IRestResponse result = GetEmployeeList();
+            List<Contact> dataResponse = JsonConvert.DeserializeObject<List<Contact>>(result.Content);
+            Assert.AreEqual(2, dataResponse.Count);
         }
     }
 }
